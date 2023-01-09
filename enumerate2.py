@@ -24,3 +24,5 @@ print()
 print("# 반복문과 조합하기")
 for i, value in enumerate(example_list): # enumerate() 함수를 사용하면 for 와 in 사이에 반복 변수를 두 개 넣을 수 있다.
     print("{}번쨰 요소는 {}입니다.".format(i, value))
+
+수정 이후 테스트
