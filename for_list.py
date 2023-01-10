@@ -103,3 +103,7 @@ else:
     "입력한 문자열은 {}입니다.",
     "{}는(은) 홀수입니다."
     ]).format(number, number))
+
+# way 1. git push -f origin master
+
+# way 2. git pull origin master
