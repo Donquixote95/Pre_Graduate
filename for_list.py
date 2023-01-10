@@ -107,3 +107,5 @@ else:
 # way 1. git push -f origin master
 
 # way 2. git pull origin master
+
+# way 3. git push origin +master ; 이 방법을 쓰면 기존 repository에 저장된 파일이 모두 날라가니까.. 웬만하면 하지 말자.
