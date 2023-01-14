@@ -25,4 +25,5 @@ for number in numbers:
         counter[number] = 0
     counter[number] += 1
     
-print(counter)
+print("사용된 숫자의 종류는", len(counter),"개 입니다.")
+print("참고", counter)
