@@ -3,6 +3,8 @@
 
 # 조건 1. 염기서열의 마지막이 3개로 조합되지 못하면 해당 부분은 무시한다.
 
+# 내 풀이
+""" 
 codon = {}
 option_key = ["cta", "caa", "tgt", "cag", "tat", "acc", "cat", "tgc", "att", "agc", "cgg"] # codon
 
@@ -27,3 +29,21 @@ print(codon)
 # print(len(blue_print))
 # print("len(blue_print)".isdigit()) #False 놀랍게도..
 # print("int(len(blue_print))".isdecimal())
+
+"""
+
+# 답지 풀이
+nucloes = "ctacaatgtcagtatacccattgcattagccgg"
+counter = {}
+for i in range(0, len(nucloes), 3): # 0, 3, 6, 9, ..., len(nucleos)
+    # 3글자씩 추출
+    codon = nucloes[i:i+3]
+    # 3글자로 구성되는지 확인
+    if len(codon) == 3:
+        print(codon)
+        # 딕셔너리에 키가 없을 경우 추가
+        if codon not in counter:
+            counter[codon] = 0
+        # 갯수를 추가
+        counter[codon] += 1
+print(counter)
