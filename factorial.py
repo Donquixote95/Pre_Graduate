@@ -111,3 +111,14 @@ print("fibonacci(40):", fibonacci(40))
 print("fibonacci(50):", fibonacci(50))
 
 # memo(메모) ; 딕셔너리를 사용해서 한 번 계산한 값을 저장, 주로 재귀함수와 함께 사용하는 기술
+
+# early returns(조기 리턴) ; 중간에 return 키워드를 사용, 들여쓰기 단계가 줄기 떄문에 코드를 더 쉽게 읽을 수 있다.
+
+def fibonacci(n):
+    if n in dictionary:
+        # 메모가 되어 있으면 메모된 값을 리턴
+        return dictionary[n]
+    # 메모되어 있지 않으면 값을 구함
+    output = fibonacci(n-1) + fibonacci(n-2)
+    dictionary[n] = output
+    return output
