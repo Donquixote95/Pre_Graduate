@@ -58,3 +58,11 @@ def sum_all(start=0, end=100, step=1):
 print("A.", sum_all(0,100,10))
 print("B.", sum_all(end=100))
 print("c.", sum_all(end=100, step=2))
+
+# 매개변수로 전달된 값들을 모두 곱해서 리턴하는 가변 매개변수 함수
+def mul(*values):
+    output = 1
+    for value in values:
+        output *= value
+    return output
+print(mul(5,7,9,10))
