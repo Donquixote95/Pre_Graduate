@@ -1,3 +1,11 @@
+"""
+isinstance(a, B) ; a라는 instance가 B라는 class에 속하면 True, 속하지 않으면 False를 반환하는 함수
+
+instance = class()
+
+instance.method()
+"""
+
 x = 1
 print(x + 2 == x.__add__(2))
 print()
