@@ -64,33 +64,50 @@ if 원판이 2개 이상
 이동 from 시작기둥 to 대상기둥
 """
 
-# 하노이 탑에서 필요한 요소를 모두 배개변수로 받는다.
+# 하노이 탑에서 필요한 요소를 모두 매개변수로 받는다.
+
+# (0) Memorization, initialization of global variables
+
+# pillar_list = ["pillar_s", "pillar_e", "pillar_a"]
+# memo = {}
+# counter = 0
+
+# # (1) 클래스 선언, initialization
 # class HanoiTower:
-#     def __init__(self, n : int) -> int:
-#         counter = 0
-#         self.pillar_s = n
-#         self.pillar_e = 0
-#         self.pillar_c = 0
+#     def __init__(self, n : int, pillar_s : str, pillar_e : str, pillar_a : str) -> None:
+#         self.n = n
+#         self.pillar_s = pillar_s
+#         self.pillar_e = pillar_e
+#         self.pillar_a = pillar_a
 
+# # (2) Method, initialization of local variables
+#     def count(self) -> dict:
+#         global memo # Final Result ; {key : n, value : HanoiTower(n).count()} 
+#         global counter # Result of value ; HanoiTower(n).count() 
+#         n = self.n # n is defined
+
+
+# # (4) Algorithms ; Recursion
 #         if n == 1:
-#             self.pillar_s -= 1
-#             self.pillar_e += 1
 #             counter += 1
-#             return print(counter)
-        
-#         if n >= 2:
-#             # 아래의 원판을 제외하고, 시작 기둥에서 보조 기둥으로 이동
+#             print("From", self.pillar_s, "To", self.pillar_e)
+#             memo[n] = counter
+
+#         else:
+#             # (4-1) 아래의 원판을 제외하고, 시작 기둥에서 보조 기둥으로 이동
 #             n -= 1
-#             self.pillar_s -= 1
-#             self.pillar_c += 1
-#             HanoiTower(n-1)
-#             # 아래의 원판을 제외하고, 보조 기둥에서 대상 기둥으로 이동
-#             counter += 1
-#             return print(counter)
+#             HanoiTower(n, self.pillar_s, self.pillar_a, self.pillar_e).count()
+#             print("From", self.pillar_s, "To", self.pillar_e)
 
+#             # (4-2) 아래의 원판을 제외하고, 보조 기둥에서 대상 기둥으로 이동
+#             n -= 1
+#             HanoiTower(n, self.pillar_a, self.pillar_e, self.pillar_s).count()
 
-# HanoiTower(1)
+#         #  # (6) End
+#         # memo[n] = counter 
+#         # return memo[n]
     
+# HanoiTower(6,"A탑","B탑","C탑").count()
 
 # 답안지
 # (1) ; 임의의 n에 대해 어떻게 원판을 옮겨야 하는가
