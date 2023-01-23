@@ -109,6 +109,20 @@ if 원판이 2개 이상
     
 # HanoiTower(6,"A탑","B탑","C탑").count()
 
+# 답안지를 보고 다시 하기
+answer = 0
+def hanoi(n, start, end, via):
+    global answer
+    if n == 1:
+        answer += 1
+        print("from", start, "to", end)
+    else:
+        hanoi(n-1, start, via, end)
+        print("from", start, "to", via)
+        hanoi(n-1, via, end, start)
+hanoi(5, "atower", "btower", "ctower")
+
+
 # 답안지
 # (1) ; 임의의 n에 대해 어떻게 원판을 옮겨야 하는가
 def 하노이탑(이동해야하는원판, 시작기둥, 대상기둥, 보조기둥):
