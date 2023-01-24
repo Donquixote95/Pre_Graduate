@@ -129,3 +129,81 @@ else:
     print("예외가 발생하지 않았습니다.")
 finally:
     print("program is done, somehow.")
+
+# 예외 처리 구문(try, except, finally)의 조합 규칙
+"""
+1. try 구문은 단독으로 사용할 수 없다. 반드시 except 구문 또는 finally 구문과 함께 사용해야 한다.
+2. else 구문은 반드시 except 구문 뒤에 사용해야 한다.
+3. 위 규칙을 지키지 않으면 'SyntaxError: Invalid syntax'
+e.g.
+ - try + except
+ - try + except + else
+ - try + except + finally
+ - try + except + else + finally
+ - try + finally
+
+"""
+
+# 파일이 제대로 닫혔는지 확인하기, file 객체의 closed 속성으로
+try:
+    # open file
+    file = open("info.txt", "w")
+    # 여러 가지 처리 수행
+    # 파일을 닫기
+    file.close()
+except:
+    print("error occurr")
+
+print("# 파일이 제대로 닫혔는지 확인")
+print("file.closed: ", file.closed) #True
+
+# daemon(데몬), Service(서비스); 항상 켜져 있는 프로그램
+
+# 파일을 닫을 때 close() 함수를 사용하지만, 중간 과정에서 예외가 발생해서 try 구문 중간에 튕겨 버리면 파일이 제대로 닫히지 않는 문제가 발생할 수 있다.
+try:
+    # open file
+    file = open("info.txt", "w")
+    # 여러 가지 처리 수행
+    error.occur()
+    # 파일을 닫는다.
+    file.close()
+except:
+    print("error occurr")
+
+print("# 파일이 제대로 닫혔는지 확인")
+print("file.closed: ", file.closed) #False
+
+#따라서 finally 구문을 사용해서 오류가 발생하더라도 닫게 하면 좋다.
+try:
+    # open file
+    file = open("info.txt", "w")
+    # 여러 가지 처리 수행
+    error.occur()
+except:
+    print("error occurr")
+finally:
+    # 파일을 닫는다.
+    file.close()
+print("# 파일이 제대로 닫혔는지 확인")
+print("file.closed: ", file.closed) #True
+
+#try, except 구문이 끝난 후 파일 닫기 ; 가능하며 문제 없음. finally 키워드를 무조건 사용할 필요가 없음.
+try:
+    # open file
+    file = open("info.txt", "w")
+    # 여러 가지 처리 수행
+    error.occur()
+except:
+    print("error occurr")
+
+# 파일을 닫는다.
+file.close()
+print("# 파일이 제대로 닫혔는지 확인")
+print("file.closed: ", file.closed)
+
+
+# type hinting 기능을 이용할 때 'value : Any'를 입력하면 "name 'Any' is not defined"라는 오류가 발생한다.
+# 해결 1. 
+from typing import List, Any
+# 해결 2.
+# linear_search(L: list, value: any) -> None: 과 같이, lower character로 적는 방법
