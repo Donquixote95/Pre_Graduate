@@ -201,6 +201,58 @@ file.close()
 print("# 파일이 제대로 닫혔는지 확인")
 print("file.closed: ", file.closed)
 
+#try 구문 내부에서 return 키워드를 사용하는 경우
+#test() 함수를 선언
+def test():
+    print("test() 함수의 첫 줄")
+    try:
+        print("try 구문이 실행되었습니다.")
+        return
+        print("try 구문의 return 키워드 뒤입니다.")
+    except:
+        print("except 구문 실행")
+    else:
+        print("else 구문 실행")
+    finally:
+        print("finally 구문 실행")
+    print("test() 함수의 마지막 줄")
+
+#test함수 호출
+test() # 실험해보면 finally 구문은 try 구문 내부에서 return해도 실행된다.
+
+#finally 키워드 활용
+def write_text_file(filename, text):
+    try:
+        #파일 열기
+        file = open(filename, "w")
+        #여러 가지 처리 수행
+        return
+        #파일에 텍스트 입력
+        file.write(text)
+    except:
+        print("error")
+    finally:
+        # 파일 닫기
+        file.close()
+#함수 호출
+write_text_file("test.txt", "안녕!")
+
+
+# finally 구문은 무조건 실행되기 떄문에 반복문에서 break와 함께 사용할 수도 있다.
+# %%
+print("프로그램 시작")
+
+while True:
+    try:
+        print("try 구문 실행")
+        break
+        print("try 구문의 break 키워드 뒤")
+    except:
+        print("except 구문 실행")
+    finally:
+        print("finally 구문이 실행")
+    print("while 반복문의 마지막 줄")
+print("프로그램 종료")
 
 # type hinting 기능을 이용할 때 'value : Any'를 입력하면 "name 'Any' is not defined"라는 오류가 발생한다.
 # 해결 1. 
