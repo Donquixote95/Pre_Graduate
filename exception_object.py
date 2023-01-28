@@ -94,3 +94,16 @@ except Exception as exception_else:
     print("예상하지 못 한 에러가 발생했습니다.")
     print(type(exception_else), exception_else)
 # %%
+# raise 구문 ; 예외를 강제로 발생시키는 기능
+# raise 예외 객체
+# 아직 구현되지 않은 부분에서 강제로 예외 발생시키기
+
+number = input("input> ")
+number = int(number)
+# 조건문 사용
+if number > 0:
+    # 양수일 때: 아직 미구현 상태
+    raise NotImplemented
+else:
+    # 음수일 때: 아직 미구현 상태
+    raise NotImplemented
