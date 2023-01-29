@@ -99,3 +99,48 @@ print()
 # 다만 한국어 등의 문자는 매개변수로 넣을 수 없다. ouput_b, ouput_c 방법 활용
 
 # %%
+import datetime
+now = datetime.datetime.now()
+
+# 특정 시간 이후의 시간 구하기
+print("#datetime.timedleta로 시간 더하기")
+after = now + datetime.timedelta(\
+    weeks=1,\
+        days=1,\
+        hours=1,\
+        minutes=1,\
+        seconds=1)
+print(after.strftime("%Y{} %m{} %d{} %H{} %M{} %S{}").format(*"년월일시분초"))
+print()
+
+# 특정 시간 요소 교체하기
+print("# now.replace()로 1년 더하기")
+output = now.replace(year=(now.year+1))
+print(output.strftime("%Y{} %m{} %d{} %H{} %M{} %S{}").format(*"년월일시분초"))
+
+#timedleta(); 특정한 시간의 이전 또는 이후를 구할 수 있다. 다만 1년 후 등을 구하는 기능은 없다.
+#relpace(); 1년 후를 구할 때 주로 사용한다. 날짜 값을 교체한다.
+# %%
+# time모듈 ; 시간과 관련된 기능을 다룰 수 있다.
+# UNIX Time ; 1970년 1월 1일 0시 0분 0초를 기준으로 계산한 시간 단위
+# 특정 시간 동안 코드 진행을 정지할 때 많이 사용한다.
+
+import time
+# time.sleep() ; 특정 시간 동안 코드 진행을 정지한다. 매개변수에 초 단위로 입력
+print("지금부터 3초 동안 정지")
+time.sleep(3)
+print("프로그램 종료")
+# %%
+# urllib ; URL을 다루는 라이브러리, 인터넷 주소를 활용할 때 사용한다.
+# URL ; Uniform Resource Locator ; 네트워크 자원(Resource)이 어디에 위치(locate)하는지 확인할 때 사용
+from urllib import request
+
+# urlopen() 함수로 구글의 메인 페이지 읽기
+target = request.urlopen("https://google.com")
+output = target.read()
+# 출력
+print(output)
+
+# urlopen() ; URL 주소의 페이지를 열어준다. 파이썬이 해당 주소에 들어간다. 
+# 이어서 read() ; 함수를 호출하면 해당 웹페이지에 있는 내용을 읽어서 가져온다.
+# 실행 결과에 'b' 라는 글자가 붙어있는데 '바이너리 데이터(bianry date)'를 의미한다.
