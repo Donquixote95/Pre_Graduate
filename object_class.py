@@ -394,7 +394,130 @@ Student.print()
 
 # 가비지 컬렉터: 변수에 저장하지 않은 경우
 # - A가 생성되고 다음 줄로 넘어갈 때 이것을 변수에 저장하지 않으면 가비지 컬렉터는 이후에 활용하지 않겠다는 의미로 이해하고 메모리를 아끼기 위해 지운다.
+class Test:
+    def __init__(self, name) -> None:
+        self.name = name
+        print("{} - 생성되었습니다.".format(self.name))
+    def __del__(self) -> None:
+        print("{} - 파괴되었습니다.".format(self.name))
 
+Test("A")
+Test("B")
+Test("C")
+
+# %%
 # 가비지 컬렉터: 변수에 저장한 경우
 # - 변수에 저장했으면 나중에 활용할 가능성이 있으므로 프로그램이 종료되는 순간까지 가비지 컬렉터가 데이터를 메모리에서 제거하지 않는다.
 # 따라서 A생성, B생성, C생성 이후에 프로그램이 종료될 때 A파괴, B파괴, C파괴가 일어난다.
+class Test:
+    def __init__(self, name) -> None:
+        self.name = name
+        print("{} - 생성되었습니다.".format(self.name))
+    def __del__(self) -> None:
+        print("{} - 파괴되었습니다.".format(self.name))
+
+a = Test("A")
+b = Test("B")
+c = Test("C")
+# %%
+# private variable(프라이빗 변수) ; 변수를 마음대로 사용하는 것을 막는 방법
+# 클래스 내부의 변수를 외부에서 사용하는 것을 막고 싶을 때
+# 인스턴스 변수 이름을 __<변수 이름> 형태로 선언한다.
+import math
+
+class Circle:
+    def __init__(self, radius):
+        self.__radius = radius
+    def get_circumference(self):
+        return 2 * math.pi * self.__radius # under bar 기호 두 개
+    def get_area(self):
+        return math.pi * (self.__radius **2) # 프라이빗 변수
+
+# Test
+circle = Circle(10)
+print("# 원의 둘레와 넓이 구하기")
+print("원의 둘레: ", circle.get_circumference())
+print("원의 넓이: ", circle.get_area())
+print()
+
+# __radius에 접근
+print("# __radius에 접근")
+print(circle.__radius)
+
+# 위 처럼 속성을 선언할 때 앞에 __를 붙이면 외부에서 사용할 수 없는 변수가 된다.
+# %%
+# getter(게터), setter(세터)
+# 프라이빗 변수의 값을 추출하거나 변경할 목적으로 간접적으로 속성에 접근하는 함수
+# Python 에서는 게터를 만들지 않으면 세터를 만들 수 없다.
+import math
+
+class Circle:
+    def __init__(self, radius):
+        self.__radius = radius
+    def get_circumference(self):
+        return 2 * math.pi * self.__radius 
+    def get_area(self):
+        return math.pi * (self.__radius **2) 
+    
+    # 게터와 세터를 선언 그리고 안전하게 사용하기
+    def get_radius(self):
+        return self.__radius
+    def set_radius(self, value):
+        if value <= 0:
+            raise TypeError("Please Input a natural number.")
+        self.__radius = value
+
+# Test
+circle = Circle(10)
+print("# 원의 둘레와 넓이 구하기")
+print("원의 둘레: ", circle.get_circumference())
+print("원의 넓이: ", circle.get_area())
+print()
+
+# 간접적으로 __radius에 접근
+print("# __radius에 접근")
+print(circle.get_radius())
+print()
+
+# 원의 둘레와 넓이를 구한다.
+circle.set_radius(2)
+print("# 반지름을 변경하고 원의 둘레와 넓이를 구한다.")
+print("원의 둘레:", circle.get_circumference())
+print("원의 넓이:", circle.get_area())
+# %%
+# 데코레이터를 사용한 게터와 세터
+# 변수 이름과 같은 함수를 정의하고
+# 위에 @property와 @<게터 함수 이름>.setter 라는 데코레이터를 붙인다.
+
+import math
+
+class Circle:
+    def __init__(self, radius):
+        self.__radius = radius
+    def get_circumference(self):
+        return 2 * math.pi * self.__radius 
+    def get_area(self):
+        return math.pi * (self.__radius **2)
+    
+    # 게터와 세터를 선언, 안전하게 사용하기
+    # 그리고 데코레이터
+    @property
+    def radius(self):
+        return self.__radius
+    @radius.setter
+    def radius(self, value):
+        if value <= 0:
+            raise TypeError("Please Input a natural number.")
+        self.__radius = value
+
+# 원의 둘레와 넓이 구하기
+print("# 데코레이터를 사용한 Getter와 Setter")
+circle = Circle(10)
+print("원의 반지름: ", circle.radius)
+circle.radius = 2
+print("변경된 원의 반지름: ", circle.radius)
+print()
+
+# 강제로 예외 발생
+print("# 강제로 예외 발생")
+circle.radius = -2
