@@ -4,7 +4,7 @@ conn = pymysql.connect(
                         host = '127.0.0.1', 
                         port = 3306,
                         user = 'root', 
-                        password = '8656', 
+                        password = '0000', 
                         db = 'soloDB', 
                         charset = 'utf8') 
  #utf8을 사용하는 이유는 한글을 사용하기 위해서이다.
