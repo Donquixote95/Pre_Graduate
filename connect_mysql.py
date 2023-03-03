@@ -110,4 +110,3 @@ while (True) :
 
 #5단계 : MySQL 연결 종료
 conn.close()
-# %%
